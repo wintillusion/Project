@@ -1,0 +1,13 @@
+<Context>
+<Resource
+	name="jdbc/MySQLDB"
+	auto="Container"
+	type="javax.sql.DataSource"
+	username="java3chs"
+	password="java3"
+	dirverClassName="com.mysql.jdbc.Driver"
+	factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+	url="jdbc:mysql://118.131.179.138/java3chs?serverTimezone=UTC"
+	maxActive="500"
+	/>
+</Context>
