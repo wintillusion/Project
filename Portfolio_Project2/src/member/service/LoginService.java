@@ -2,7 +2,6 @@ package member.service;
 
 import static db.JdbcUtil.*;
 import java.sql.Connection;
-
 import dao.MemberDAO;
 import member.vo.MemberBean;
 

@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="menu/menu2.jsp"/>
+
+<%
+    String id=null;
+    if(session.getAttribute("id")!=null){
+    	id=(String)session.getAttribute("id");
+   // 	System.out.println("main session : " + id);
+    }
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +51,7 @@ html, body {
 			text-align : center;
 			
 		}
-		footer {
+		/* footer {
 			padding: 10px 0;
 			background-color: #333;
 			color: white;
@@ -52,7 +60,7 @@ html, body {
 			position : relative;
 			margin-top : 80px;
 
-		}
+		} */
 		
 		.notice{width:100%; height:50px; overflow:hidden; background-color:#fff;}
 		.rolling{position:relative; width:100%; height:auto;}
@@ -142,8 +150,6 @@ html, body {
 <a href="#" style="color:gray">ABOUT ME</a>
 </aside>
  </section>
- <footer>
-<p style="font-weight:bold">개인 프로젝트용 영화리뷰사이트입니다.</p>
-</footer>
+<jsp:include page="footer/footer.jsp"></jsp:include>
 </body>
 </html>

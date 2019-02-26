@@ -43,6 +43,7 @@ body{
 	background:#f1f1f1b3;
 	border-radius : 10px;
 	margin : 10px auto;
+	
 }
 
 .tbox input{

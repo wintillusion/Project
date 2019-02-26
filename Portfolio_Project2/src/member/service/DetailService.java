@@ -8,16 +8,16 @@ import member.vo.MemberBean;
 
 public class DetailService {
 
-	public MemberBean getArticle(String id) throws Exception {
+	public MemberBean getMemberBean(String id) throws Exception {
 
-		MemberBean article = null;
+		MemberBean memberBean = null;
 		Connection con = getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
 
-		article = memberDAO.selectMember(id);
-
-		if (article != null) {
+		memberBean = memberDAO.selectMember(id);
+		System.out.println("Detail service : " + id);
+		if (memberBean != null) {
 			commit(con);
 		} else {
 			rollback(con);
@@ -25,7 +25,7 @@ public class DetailService {
 
 		close(con);
 
-		return article;
+		return memberBean;
 
 	}
 

@@ -10,11 +10,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script> <!-- jquery쓸때 적어줘야함. -->
 <style>
-html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-}
+
 
 body {
       font-family: "Helvetica Neue",sans-serif;

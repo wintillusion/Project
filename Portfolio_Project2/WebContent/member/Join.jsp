@@ -199,7 +199,7 @@ var idcheck;
 			<input class="tbox" type="text" name="id" id="id" placeholder="@ID">
 			<br><span id="idChk"></span>
 			<input class= "btn" type="button" name="idcheck" id="idcheck" value="ID CHECK"
-			onclick="window.open('member/idCheck.jsp?openInit=true','','width=600, height=300')">
+			onclick="window.open('member/idCheck.jsp?openInit=true','','width=280, height=300')">
 			<!-- <input type="hidden" value="id"> -->
 		</td>
 	</tr>

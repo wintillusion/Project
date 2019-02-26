@@ -1,4 +1,4 @@
-<Context>
+<!-- <Context>
 <Resource
 	name="jdbc/MySQLDB"
 	auto="Container"
@@ -8,6 +8,20 @@
 	dirverClassName="com.mysql.jdbc.Driver"
 	factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 	url="jdbc:mysql://118.131.179.138/java3chs?serverTimezone=UTC"
+	maxActive="500"
+	/>
+</Context> -->
+
+<Context>
+<Resource
+	name="jdbc/MySQLDB"
+	auto="Container"
+	type="javax.sql.DataSource"
+	username="java"
+	password="java"
+	dirverClassName="com.mysql.jdbc.Driver"
+	factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+	url="jdbc:mysql://localhost:3306/java3chs?serverTimezone=UTC"
 	maxActive="500"
 	/>
 </Context>

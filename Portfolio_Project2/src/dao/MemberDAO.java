@@ -1,8 +1,6 @@
 package dao;
 
 import static db.JdbcUtil.close;
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,23 +86,56 @@ public class MemberDAO {
 		}
 		return login;
 	}
+	
+	//멤버 정보 보기
+	public MemberBean selectMember(String id) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberBean memberBean = null;
+
+		try {
+			pstmt = con.prepareStatement("select * from member where id =?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			System.out.println("멤버정보보기 DAO : "+id);
+			
+			if (rs.next()) {
+				memberBean = new MemberBean();
+				memberBean.setId(rs.getString("id"));
+				memberBean.setPassword(rs.getString("password"));
+				memberBean.setName(rs.getString("name"));
+				memberBean.setPhone(rs.getString("phone"));
+				memberBean.setAddress1(rs.getString("address1"));
+				memberBean.setAddress2(rs.getString("address2"));
+				memberBean.setPostcode(rs.getString("postcode"));
+				memberBean.setEmail(rs.getString("email"));
+			}
+		} catch (Exception ex) {
+			System.out.println("MemberDetail 에러 : " + ex);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return memberBean;
+	}
+	
 	//회원정보수정
 	public int updateMember(MemberBean memberbean) {
 
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "update member set name=?, password=?, phone=?, postcode=?, address1=? address2=?, email=? where id=?";
+		String sql = "update member set name=?, phone=?, postcode=?, address1=?, address2=?, email=? where id=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberbean.getName());
-			pstmt.setString(2, memberbean.getPassword());
-			pstmt.setString(3, memberbean.getPhone());
-			pstmt.setString(4, memberbean.getPostcode());
-			pstmt.setString(5, memberbean.getAddress1());
-			pstmt.setString(6, memberbean.getAddress2());
-			pstmt.setString(7, memberbean.getEmail());
-			pstmt.setString(8, memberbean.getId());
+			pstmt.setString(2, memberbean.getPhone());
+			pstmt.setString(3, memberbean.getPostcode());
+			pstmt.setString(4, memberbean.getAddress1());
+			pstmt.setString(5, memberbean.getAddress2());
+			pstmt.setString(6, memberbean.getEmail());
+			pstmt.setString(7, memberbean.getId());
 			updateCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Modify 에러 " + e);
@@ -113,38 +144,6 @@ public class MemberDAO {
 		}
 		return updateCount;
 	}
-	
-	//멤버 정보 보기
-		public MemberBean selectMember(String id) {
-
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			MemberBean memberBean = null;
-
-			try {
-				pstmt = con.prepareStatement("select * from member where id =?");
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-					memberBean = new MemberBean();
-					memberBean.setId(rs.getString("id"));
-					memberBean.setPassword(rs.getString("password"));
-					memberBean.setName(rs.getString("name"));
-					memberBean.setPhone(rs.getString("phone"));
-					memberBean.setAddress1(rs.getString("address1"));
-					memberBean.setAddress2(rs.getString("address2"));
-					memberBean.setPostcode(rs.getString("postcode"));
-					memberBean.setEmail(rs.getString("email"));
-				}
-			} catch (Exception ex) {
-				System.out.println("MemberDetail 에러 : " + ex);
-			} finally {
-				close(rs);
-				close(pstmt);
-			}
-			return memberBean;
-		}
 /*	//멤버리스트
 	public int selectListCount() {
 		int listCount = 0;

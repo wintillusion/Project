@@ -14,10 +14,10 @@ import member.action.LogoutAction;
 import member.action.MemberJoinProAction;
 import member.action.DetailAction;
 import member.action.idCheckAction;
-/*import member.action.MemberListAction;
 import member.action.ModifyFormAction;
 import member.action.ModifyProAction;
-import member.action.DeleteAction;*/
+//import member.action.MemberListAction;
+//import member.action.DeleteAction;
 import vo.ActionForward;
 
 /**
@@ -69,13 +69,13 @@ public class MemberController extends HttpServlet {
 		//System.out.println(contextPath);
 		//System.out.println(command); 경로 확인
 			
-		if(command.equals("/joinForm.member")) {
+		if(command.equals("/joinForm.member")) {	//조인 폼
 			forward=new ActionForward();
 			forward.setPath("/member/Join.jsp");
 			
 		}
 		
-		else if(command.equals("/joinPro.member")) {
+		else if(command.equals("/joinPro.member")) {	//조인 로직
 			action=new MemberJoinProAction();
 			
 			try {
@@ -83,17 +83,17 @@ public class MemberController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/loginForm.member")) {
+		}else if(command.equals("/loginForm.member")) {	//로그인 폼
 			action=new MemberJoinProAction();
 			forward=new ActionForward();
 			forward.setPath("/member/login.jsp");
 			
-		}else if(command.equals("/loginForm2.member")) {
+		}else if(command.equals("/loginForm2.member")) {	//조인 완료 로그인폼
 			action=new MemberJoinProAction();
 			forward=new ActionForward();
 			forward.setPath("/member/login2.jsp");
 			
-		}else if(command.equals("/login.member")) {
+		}else if(command.equals("/login.member")) {		//로그인 로직
 			action=new LoginAction();
 			
 			try {
@@ -103,14 +103,18 @@ public class MemberController extends HttpServlet {
 			}
 		}
 		
-		else if(command.equals("/logout.member")) {
+		else if(command.equals("/logout.member")) {		//로그아웃
 			action=new LogoutAction();
 			try {
 				forward=action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/member_info.member")) {
+		}else if(command.equals("/member_main.member")) {	//회원 정보 main
+			forward=new ActionForward();
+			forward.setPath("/member/member_main.jsp");
+			
+		}else if(command.equals("/member_view.member")) {	//회원정보
 			action=new DetailAction();
 			
 			try {
@@ -120,14 +124,6 @@ public class MemberController extends HttpServlet {
 			}
 		}else if(command.equals("/idCheck.member")) {
 			action=new idCheckAction();
-			
-			try {
-				forward=action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			}
-		}/*else if(command.equals("/list.member")) {
-			action=new MemberListAction();
 			
 			try {
 				forward=action.execute(request, response);
@@ -144,6 +140,14 @@ public class MemberController extends HttpServlet {
 			}
 		}else if(command.equals("/modifyPro.member")) {
 			action=new ModifyProAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}/*else if(command.equals("/list.member")) {
+			action=new MemberListAction();
 			
 			try {
 				forward=action.execute(request, response);

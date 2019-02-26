@@ -2,25 +2,22 @@ package member.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import action.Action;
-import member.service.DetailService;
 import vo.ActionForward;
 import member.vo.MemberBean;
+import member.service.*;
+import action.Action;
 
-public class DetailAction implements Action {
+public class ModifyFormAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		ActionForward forward=new ActionForward();
+		ActionForward forward = new ActionForward();
 		String id=request.getParameter("id");
-		System.out.println("Detail Action : " + id);
-		String page=request.getParameter("page");
-		DetailService detilService=new DetailService();
-		MemberBean memberBean=detilService.getMemberBean(id);
+		DetailService Detailservice = new DetailService();
+		MemberBean memberBean = Detailservice.getMemberBean(id);
 		request.setAttribute("memberBean", memberBean);
-		request.setAttribute("page", page);
-		forward.setPath("/member/member_view.jsp");
+		forward.setPath("/member/modifyForm.jsp");
 		return forward;
 	}
 }

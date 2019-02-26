@@ -17,7 +17,7 @@ public class idCheckAction implements Action{
 		String id = request.getParameter("id");
 		
 		DetailService memberSvc = new DetailService();
-		MemberBean member = memberSvc.getArticle(id);
+		MemberBean member = memberSvc.getMemberBean(id);
 		
 		if(member==null) {
 			request.setAttribute("passibleID", true);

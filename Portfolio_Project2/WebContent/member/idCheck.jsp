@@ -3,12 +3,64 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ID CHECK</title>
+<style>
+body{
+
+	background : #333;
+}
+.tbox{
+	width:260px;
+	height:40px;
+	
+	background:#f1f1f1b3;
+	border-radius : 10px;
+	margin : 10px auto;
+}
+
+.tbox input{
+	background: none;
+	border : none;
+	outline : none;
+	text-align : center;
+	width:90%;
+	line-height : 37px;
+	font-family : "Montserrat", sans-serif;
+	font-size : 14px;
+	color: #333;
+}
+.btn{
+	width : 260px;
+	height : 40px;
+	background : #3498db;
+	border-radius : 10px;
+	margin : 14px auto;
+	display : block;
+	font-family : "Montserrat", sans-serif;
+	font-weight : bold;	/* 글씨가 너무 작아서 bold로 처리. 나중에 뺄지말지 결정 */
+	font-size : 16px;
+	border : none;
+	color : white;
+}
+
+h3{
+	color : white;
+	text-align : center;
+	margin : auto;
+	transition : 0.4s all;
+}
+
+a{
+	text-decoration: none;
+	text-align : center;
+	color : #3498db;
+	
+}
+</style>
 </head>
 	<c:choose>
 		<c:when test="${passibleID==null }">
@@ -35,8 +87,8 @@ function ok(v){
 </script>
 <body onload="init()">
 <form action="../idCheck.member" method="post" name=f>
-	<input type="text" name="id" id="id">
-	<input type="submit" value="중복확인">
+	<input class="tbox" type="text" name="id" id="id">
+	<input class="btn" type="submit" value="중복확인">
 </form>
 <c:if test="${passibleID != null }">
 <c:choose>

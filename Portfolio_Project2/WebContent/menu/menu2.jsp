@@ -5,22 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MOVIDA</title>
-	  <link rel="stylesheet" href="style.css">
+<title>MOVIEDA</title>
+	  <!-- <link rel="stylesheet" href="style.css"> -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
-html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-}
-
-
 body {
-      font-family: "Helvetica Neue",sans-serif;
+      font-family: Quicksand;
       font-weight: lighter;
-     
+      margin : 0 ;
+      padding : 0;
 }
 
 header {
@@ -46,8 +40,13 @@ header {
 
 nav {
       position: fixed;
+      top : 0;
+      left : 0;
       width: 100%;
+      height : 100px;
       line-height: 60px;
+     /*  box-sizing: border-box; */
+      
 }
 
 nav ul {
@@ -69,7 +68,7 @@ nav.black ul {
 
 nav ul li {
       display: inline-block;
-      padding: 16px 40px;;
+      padding: 16px 40px;
 }
 
 nav ul li a {
@@ -84,7 +83,7 @@ nav ul li a {
       width: 100%;
       background: #000;
       text-align: right;
-      box-sizing: border-box;
+      /* box-sizing: border-box; */
       padding: 15px 24px;
       cursor: pointer;
       color: #fff;
@@ -93,6 +92,23 @@ nav ul li a {
 
   a { text-decoration: none; color: white; }
     a:visited { text-decoration: none; }
+    
+.hide ul ul{
+	display:none;
+	float:none;
+}
+
+.hide ul li:hover ul{
+display:block;
+}
+
+nav ul li a.active {
+		background: #e2472f;
+		color : #fff;
+		border-radius : 4px;
+		
+		
+	}
 
  @media(max-width: 786px) {
 
@@ -127,13 +143,7 @@ nav ul li a {
       }
 
 }
-
-/* nav ul li a.active {
-		background: #e2472f;
-		color : #fff;
-		border-radius :6px;
-	}
- */
+ 
 	
 	</style>
 	
@@ -178,6 +188,7 @@ nav ul li a {
                         </div>
 
                         <div class="menu">
+                        
                               <ul>
                                     <li><a href="#">REQUEST</a></li>
                                     <li><a href="#">REVIEW</a></li>
@@ -187,12 +198,13 @@ nav ul li a {
     String id=null;
     if(session.getAttribute("id")!=null){
     	id=(String)session.getAttribute("id");    	
-
+		//System.out.println("Menu Session : " + id);
     %>
-                                    <li><a href="./member_info.member"><%=id %>님</a></li>
-                                    <li><a href="./logout.member">LOGOUT</a></li>
+                                    <li><a href="./member_main.member?id=<%=id%>"><%=id %>님</a></li>
+                                    
+                                    <li><a class="active" href="./logout.member">LOGOUT</a></li>
 <%}else{ %>
-									<li><a href="./loginForm.member">LOGIN</a></li>
+									<li><a class="active" href="./loginForm.member">LOGIN</a></li>
 									
 <%} %>
                               </ul>
