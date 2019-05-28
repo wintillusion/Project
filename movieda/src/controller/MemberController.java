@@ -1,0 +1,227 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import action.Action;
+import member.action.LoginAction;
+import member.action.LogoutAction;
+import member.action.MemberJoinProAction;
+import member.action.DetailAction;
+import member.action.idCheckAction;
+import member.action.ModifyFormAction;
+import member.action.ModifyProAction;
+import member.action.PassChkFormAction;
+import member.action.PassFormAction;
+import member.action.PassProAction;
+import member.action.DeleteAction;
+import member.action.PassChkProAction;
+import member.action.MyArticleAction;
+import member.action.DeleteFormAction;
+import member.action.MyAuctionAction;
+import vo.ActionForward;
+
+/**
+ * Servlet implementation class MamberController
+ */
+@WebServlet("*.member")
+public class MemberController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MemberController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doMember(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doMember(request, response);
+	}
+
+	
+	protected void doMember(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		// 경로구하는 부분 (무슨페이지를 호출햇는지 )
+		String RequestURI=request.getRequestURI();  	//전체경로
+		String contextPath=request.getContextPath();		// context 앞까지경로
+		String command=RequestURI.substring(contextPath.length()); 		// /뒤경로
+		
+	
+		
+		ActionForward forward=null;
+		Action action=null;
+		//System.out.println(RequestURI);
+		//System.out.println(contextPath);
+		//System.out.println(command); 경로 확인
+			
+		if(command.equals("/joinForm.member")) {	//조인 폼
+			forward=new ActionForward();
+			forward.setPath("/member/Join.jsp");
+			
+		}
+		
+		else if(command.equals("/joinPro.member")) {	//조인 로직
+			action=new MemberJoinProAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/loginForm.member")) {	//로그인 폼
+			action=new MemberJoinProAction();
+			forward=new ActionForward();
+			forward.setPath("/member/login.jsp");
+			
+		}else if(command.equals("/loginForm2.member")) {	//조인 완료 로그인폼
+			action=new MemberJoinProAction();
+			forward=new ActionForward();
+			forward.setPath("/member/login2.jsp");
+			
+		}else if(command.equals("/login.member")) {		//로그인 로직
+			action=new LoginAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if(command.equals("/logout.member")) {		//로그아웃
+			action=new LogoutAction();
+			try {
+				forward=action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/member_main.member")) {	//회원 정보 main
+				action=new MyArticleAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/member_view.member")) {	//회원정보
+			action=new DetailAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/idCheck.member")) {
+			action=new idCheckAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/modifyForm.member")) {
+			action=new ModifyFormAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/modifyPro.member")) {
+			action=new ModifyProAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/passChkForm.member")) {
+			action=new PassChkFormAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/passChkPro.member")) {
+			action=new PassChkProAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/passChangeForm.member")) {
+			action=new PassFormAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/passChangePro.member")) {
+			action=new PassProAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/deleteForm.member")) {
+			action=new DeleteFormAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/delete.member")) {
+			action=new DeleteAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/memberAuction.member")) {
+			action=new MyAuctionAction();
+			
+			try {
+				forward=action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		if(forward != null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			}else {
+				RequestDispatcher dispatcher=request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+		}
+	}
+}
